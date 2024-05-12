@@ -34,3 +34,20 @@ document.addEventListener("DOMContentLoaded", function() {
   const hiddenElements = document.querySelectorAll('.hidden');
   hiddenElements.forEach(el => observer.observe(el));
 });
+document.addEventListener("DOMContentLoaded", function () {
+  const navbarLinks = document.querySelectorAll('#items p1'); // Select navigation links
+
+  navbarLinks.forEach(link => {
+      link.addEventListener('click', function (e) {
+          e.preventDefault(); // Prevent default anchor click behavior
+          const sectionId = link.id.replace('link-', ''); // Assume IDs are directly usable, replace 'link-' with ''
+          const section = document.getElementById(sectionId); // Attempt to get the section
+
+          if (section) {
+              section.scrollIntoView({ behavior: 'smooth', block: 'start' }); // Scroll to the section if it exists
+          } else {
+              console.error('No section found for ID:', sectionId); // Log an error if section not found
+          }
+      });
+  });
+});
